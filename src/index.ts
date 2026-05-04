@@ -10,9 +10,8 @@ app.listen(port, () => {
 })
 
 app.get('/api/health', (_req: Request, res: Response) => {
-  const response = {
+  res.status(200).json({
     status: 'ok',
     api: 'up',
-  }
-  res.status(200).send(response)
+  })
 })
