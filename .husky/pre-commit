@@ -1,0 +1,25 @@
+# #!/bin/sh
+# . "$(dirname "$0")/_/husky.sh"
+
+echo "Vérification du lint..."
+npm run lint
+if [ $? -ne 0 ]; then
+    echo "Erreurs de lint détectées. Commit annulé."
+    exit 1
+fi
+
+echo "Vérification du formatage..."
+npm run format
+if [ $? -ne 0 ]; then
+  echo "Erreurs de formatage détectées. Commit annulé."
+  exit 1
+fi
+
+echo "Lancement des tests..."
+npm run test
+if [ $? -ne 0 ]; then
+  echo "Les tests ont échoué. Commit annulé."
+  exit 1
+fi
+
+echo "Code valide dans le pré commit. Commit autorisé"
